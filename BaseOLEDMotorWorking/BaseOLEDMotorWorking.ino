@@ -24,13 +24,13 @@ int BO2=9;  //BIN2
 
 #define SENSORPIN 10
 
-int count = 0;
+int count = 0;//Counter to keep track of revolutions
 float rps = 0.0, omega = 0.0;
 
 int sensorState = 0, lastState = 0;       // variable for reading the pushbutton status
 
-const int maxcount = 5;
-unsigned long curtime = 0;
+const int maxcount = 5;  //Maximum number of revolutions before calculating RPS and Omega
+unsigned long curtime = 0;  //Time at the start of cycle
 
 void setup() {
 
@@ -55,15 +55,15 @@ void setup() {
 }
 
 void loop() {
-  xval = analogRead(x);
-  yval = analogRead(y);
-  getSetSpeed();
-  getSetDirection();
+  xval = analogRead(x);  //Get the Xvalue
+  yval = analogRead(y);  //Get the Yvalue
+  getSetSpeed();         //Control the motor speed
+  getSetDirection();     //Control the motor Direction
   //-------------------
-  curtime = millis();
-  countRevs();
+  curtime = millis();     //RECORD the start time of the cycle (milliseconds)
+  countRevs();            //Count [max] revolutions
   
-   if (count == maxcount)
+   if (count == maxcount)  //when [x] revolutions complete, calculate the average RPS and omega
     {
       publishRPS();
     }

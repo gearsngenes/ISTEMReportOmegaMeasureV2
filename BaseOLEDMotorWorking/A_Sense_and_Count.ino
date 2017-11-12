@@ -1,12 +1,13 @@
-void countRevs() {
-  while (count < maxcount)
+void countRevs() {  //Counts the number of times a revolution completes
+  while (count < maxcount)  //Do this as long as count is less than [x]
   {
-    xval = analogRead(x);
-    yval = analogRead(y);
+    //KEEP controlling the motor throught the joystick, even in While Loop
+    xval = analogRead(x);  
+    yval = analogRead(y);          
     getSetSpeed();
     getSetDirection();
-
-    sensorState = digitalRead(SENSORPIN);
+    //-------
+    sensorState = digitalRead(SENSORPIN);  //Receive the IR Sensor 
     if (sensorState == LOW) {
       // turn LED on:
       digitalWrite(LEDPIN, HIGH);
@@ -21,7 +22,7 @@ void countRevs() {
     }
     if (!sensorState && lastState) {
       //  Serial.println("Broken");
-      count++;
+      count++;  //if broken, count it as one revolution
     }
     lastState = sensorState;
 
