@@ -1,12 +1,13 @@
 void countRevs() {  //Counts the number of times a revolution completes
   while (count < maxcount)  //Do this as long as count is less than [x]
   {
-    //KEEP controlling the motor throught the joystick, even in While Loop
+    //-------------Important Note
+    // ----- KEEP controlling the motor through the joystick, even in While Loop
     xval = analogRead(x);  
     yval = analogRead(y);          
     getSetSpeed();
     getSetDirection();
-    //-------
+    //-------End Important note
     sensorState = digitalRead(SENSORPIN);  //Receive the IR Sensor 
     if (sensorState == LOW) {
       // turn LED on:
